@@ -2,3 +2,38 @@
  * CSS code specific to home page
  * (margin/padding adjustments)
  * ------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css?family=Oswald|Roboto');
+
+body{
+  background-color: black;
+  color: white;
+}
+
+#title{
+  color: #F9A70C;
+  font-size: 2.4em;
+  font-family: 'Oswald', sans-serif;
+  padding-bottom: 30px;
+}
+
+
+#summary{
+  font-size: 2em;
+  font-weight: 200;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+}
+
+.content{
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
