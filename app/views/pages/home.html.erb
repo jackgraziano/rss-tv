@@ -1,2 +1,43 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>RSS TV</h1>
+<div id="title"></div>
+<div id="summary"></div>
+
+<%= content_for :after_js do %>
+  <script>
+    var news;
+    $(document).ready(function(){
+
+      $.ajax({
+        // ajax call
+        type: 'GET',
+        url: '/update.json',
+
+        // success
+        success: function(data){
+          news = data;
+          console.log(news);
+          display(news);
+        },
+
+        // error
+        error: function(jqXHR){
+          console.log(jqXHR.responseText);
+        }
+
+      })
+    })
+
+    function display(news){
+      var count = Object.keys(news).length;
+      for (var i=0;i<=count;i++) {
+       (function(ind) {
+         setTimeout(function(){
+          $('#title').html(news[ind].title);
+          $('#summary').html(news[ind].summary);
+         }, 8000 * ind);
+       })(i);
+      }
+    }
+
+  </script>
+<% end %>
