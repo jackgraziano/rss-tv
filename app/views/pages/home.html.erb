@@ -5,26 +5,56 @@
     <div id="summary"></div>
   </div>
 
+  <div class="footer" id="usd_wrapper">
+
+    <div class="quote_wrapper" id="ibov_wrapper">
+      <div class="symbol">IBOV: </div>
+      <div class="quote" id="ibov_quote"></div>
+      <div class="change" id="ibov_change"></div>
+    </div>
+
+    <div class="quote_wrapper" id="usd_wrapper">
+      <div class="symbol">USD: </div>
+      <div class="quote" id="usd_quote"></div>
+      <div class="change" id="usd_change"></div>
+    </div>
+
+  </div>
+
 </div>
 
 <%= content_for :after_js do %>
   <script>
+
     var news;
+    var quotes;
+
+    //
+    //
+    // DOCUMENT READY
+    //
+    //
     $(document).ready(function(){
-      update_feed();
+      update_news_feed();
+      update_quotes_feed();
     })
 
-    function update_feed(){
+    //
+    //
+    // NEWS FEED
+    //
+    //
+    function update_news_feed(){
       $.ajax({
         // ajax call
         type: 'GET',
-        url: '/update.json',
+        url: '/update_news.json',
 
         // success
         success: function(data){
           news = data;
           console.log(news);
-          display(news);
+          display_news(news);
         },
 
         // error
@@ -35,7 +65,7 @@
       })
     }
 
-    function display(news){
+    function display_news(news){
       var count = Object.keys(news).length;
       for (var i=0;i<=count - 1;i++) {
        (function(ind) {
@@ -45,8 +75,60 @@
          }, 8000 * ind);
        })(i);
       }
-      setTimeout(function(){update_feed();}, 8000 * count);
+      setTimeout(function(){update_news_feed();}, 8000 * count);
     }
+
+    //
+    //
+    // QUOTES FEED
+    //
+    //
+    function update_quotes_feed(){
+      $.ajax({
+        // ajax call
+        type: 'GET',
+        url: '/update_quotes.json',
+
+        // success
+        success: function(data){
+          quotes = data;
+          console.log(quotes);
+          display_quotes(quotes);
+        },
+
+        // error
+        error: function(jqXHR){
+          console.log(jqXHR.responseText);
+        }
+
+      })
+    }
+
+    function display_quotes(quotes){
+      $('#usd_quote').html(quotes[0].last_trade_price)
+      $('#usd_change').html(quotes[0].change_in_percent)
+      if(quotes[0].change_in_percent.charAt(0) === "+"){
+        $("#usd_change").removeClass("change_negative").addClass("change_positive");
+      }
+      else {
+        $("#usd_change").removeClass("change_positive").addClass("change_negative");
+      }
+
+
+      $('#ibov_quote').html(quotes[1].last_trade_price)
+      $('#ibov_change').html(quotes[1].change_in_percent)
+      if(quotes[1].change_in_percent.charAt(0) === "+"){
+        $("#ibov_change").removeClass("change_negative").addClass("change_positive");
+      }
+      else {
+        $("#ibov_change").removeClass("change_positive").addClass("change_negative");
+      }
+
+      setTimeout(function(){update_quotes_feed();}, 10000);
+
+    }
+
+
 
   </script>
 <% end %>

@@ -28,3 +28,4 @@ group :development, :test do
 end
 
 gem "feedjira"
+gem "yahoo-finance"
