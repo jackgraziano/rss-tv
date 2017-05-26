@@ -25,6 +25,14 @@ class FeedController < ApplicationController
     respond_to do |format|
       format.json {render json: [@quote_usd, @quote_ibov]}
     end
+  end
 
+  def update_weather
+    url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22sao%20paulo%2C%20sao%20paulo%2C%20brasil%22)%20%20and%20u%3D%27c%27&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys"
+    weather = open(url).read
+
+    respond_to do |format|
+      format.json {render json: weather}
+    end
   end
 end

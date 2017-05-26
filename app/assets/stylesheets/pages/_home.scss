@@ -55,7 +55,7 @@ body{
 
 .quote_wrapper{
   height: 100%;
-  width: 40%;
+  width: 33%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -89,4 +89,33 @@ body{
 
 .change_negative{
   color: red;
+}
+
+.weather_wrapper{
+  height: 100%;
+  width: 33%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+
+  .weather_status{
+    color: white;
+    font-size: 2em;
+    font-family: 'Oswald', sans-serif;
+    padding-right: 10px;
+  }
+
+  .weather_temp{
+    color: #F9A70C;
+    font-size: 5em;
+    font-family: 'Oswald', sans-serif;
+    padding-right: 10px;
+  }
+
+  .high, .low{
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.7em;
+  }
 }

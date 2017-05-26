@@ -19,6 +19,28 @@
       <div class="change" id="usd_change"></div>
     </div>
 
+    <div class="weather_wrapper">
+      <div class="weather_status" id="condition"></div>
+      <div class="weather_temp">
+        <span id="current_temp"></span>&deg
+      </div>
+      <div class="high-low-wrapper">
+
+        <div class="high">
+          <i class="fa fa-long-arrow-up" aria-hidden="true"></i>
+          <span id="high"></span>
+          &deg
+        </div>
+
+        <div class="low">
+          <i class="fa fa-long-arrow-down" aria-hidden="true"></i>
+          <span id="low"></span>
+          &deg
+        </div>
+
+      </div>
+    </div>
+
   </div>
 
 </div>
@@ -37,6 +59,7 @@
     $(document).ready(function(){
       update_news_feed();
       update_quotes_feed();
+      update_weather_feed();
     })
 
     //
@@ -125,8 +148,50 @@
       }
 
       setTimeout(function(){update_quotes_feed();}, 20000);
+    }
+
+    //
+    //
+    // WEATHER FEED
+    //
+    //
+    function update_weather_feed(){
+      $.ajax({
+        // ajax call
+        type: 'GET',
+        url: '/update_weather.json',
+
+        // success
+        success: function(data){
+          weather = data;
+          console.log(weather);
+          display_weather(weather);
+        },
+
+        // error
+        error: function(jqXHR){
+          console.log(jqXHR.responseText);
+        }
+
+      })
+    }
+
+    function display_weather(weather){
+
+      current_temp = weather["query"]["results"]["channel"]["item"]["condition"].temp;
+      condition = weather["query"]["results"]["channel"]["item"]["condition"].text;
+      high = weather["query"]["results"]["channel"]["item"]["forecast"][0].high;
+      low = weather["query"]["results"]["channel"]["item"]["forecast"][0].low;
+
+      $('#current_temp').html(current_temp);
+      $('#condition').html(condition);
+      $('#high').html(high);
+      $('#low').html(low);
+
+      setTimeout(function(){update_weather_feed();}, 100000);
 
     }
+
 
 
 
