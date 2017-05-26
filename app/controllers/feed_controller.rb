@@ -1,6 +1,6 @@
 class FeedController < ApplicationController
   def update_news
-    url = "http://feeds.folha.uol.com.br/emcimadahora/rss091.xml"
+    url = "http://www.valor.com.br/rss"
     feed = Feedjira::Feed.fetch_and_parse url
     entries = feed.entries
     @news_array = []
