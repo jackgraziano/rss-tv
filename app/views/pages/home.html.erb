@@ -1,9 +1,15 @@
 <div class="container">
 
+  <div class="logo">
+    <%= image_tag "maxima.jpg", height:"80" %>
+  </div>
+
   <div class="content">
     <div id="title"></div>
     <div id="summary"></div>
   </div>
+
+  <div id="preco"></div>
 
   <div class="footer" id="usd_wrapper">
 
@@ -60,6 +66,7 @@
       update_news_feed();
       update_quotes_feed();
       update_weather_feed();
+      update_bbce_feed();
     })
 
     //
@@ -192,7 +199,49 @@
 
     }
 
+    //
+    //
+    // BBCE FEED
+    //
+    //
+    function update_bbce_feed(){
+      $.ajax({
+        // ajax call
+        type: 'GET',
+        url: '/update_bbce.json',
 
+
+        // success
+        success: function(data){
+          bbce = data;
+          console.log(bbce);
+          display_bbce(bbce);
+        },
+
+        // error
+        error: function(jqXHR){
+          console.log(jqXHR.responseText);
+        }
+
+      })
+    }
+
+    function display_bbce(bbce){
+
+
+      last_trade = JSON.parse(bbce[0])[0];
+      dataHora = last_trade.dataHora;
+      preco = last_trade.preco;
+      quantidade = last_trade.quantidade;
+
+      $('#preco').html(preco);
+      // $('#condition').html(condition);
+      // $('#high').html(high);
+      // $('#low').html(low);
+
+      setTimeout(function(){update_bbce_feed();}, 20000);
+
+    }
 
 
   </script>

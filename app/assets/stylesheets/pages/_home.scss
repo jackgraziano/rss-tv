@@ -13,6 +13,17 @@ body{
   height: 100%;
 }
 
+.logo{
+  position: absolute;
+  top: 15px;
+  right: 30px;
+}
+
+img {
+   -webkit-filter: invert(1);
+   filter: invert(1);
+   }
+
 #title{
   color: #F9A70C;
   font-size: 2.4em;
@@ -20,6 +31,13 @@ body{
   padding-bottom: 30px;
 }
 
+#preco{
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  font-size: 2.0em;
+}
 
 #summary{
   font-size: 2em;

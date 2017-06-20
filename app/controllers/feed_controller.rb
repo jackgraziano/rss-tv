@@ -35,4 +35,15 @@ class FeedController < ApplicationController
       format.json {render json: weather}
     end
   end
+
+
+  def update_bbce
+    url = "http://api.bbce.com.br/produto/107/negocios"
+    bbce = open(url)
+
+    respond_to do |format|
+      format.json {render json: bbce}
+    end
+  end
+
 end
