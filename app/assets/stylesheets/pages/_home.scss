@@ -19,6 +19,16 @@ body{
   right: 30px;
 }
 
+.bbce-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+img{
+  float: left;
+  margin: 0 20px 0 0;
+}
 
 #title{
   color: #F9A70C;
@@ -27,11 +37,8 @@ body{
   padding-bottom: 30px;
 }
 
-#preco{
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-  color: white;
+.preco{
+  color: #F9A70C;
   font-size: 2.0em;
 }
 
@@ -54,14 +61,30 @@ body{
   justify-content: center;
 }
 
-.footer{
-  background-color: black;
-  z-index: 10;
-  height: 20vh;
+.lower{
+  height: 30vh;
   position: fixed;
   width: 100%;
   bottom: 0;
   left: 0;
+}
+
+.quotes{
+  height: 15vh;
+  width: 100%;
+  border-top: 1px solid rgba(249, 167, 12, 0.7);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+
+.footer{
+  background-color: black;
+  z-index: 10;
+  height: 15vh;
+  position: fixed;
+  width: 100%;
   border-top: 1px solid rgba(249, 167, 12, 0.7);
   display: flex;
   justify-content: space-between;

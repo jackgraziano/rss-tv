@@ -38,11 +38,24 @@ class FeedController < ApplicationController
 
 
   def update_bbce
+    # semestre
     url = "http://api.bbce.com.br/produto/107/negocios"
-    bbce = open(url)
+    sem = open(url)
+
+    # tri
+    url = "http://api.bbce.com.br/produto/110/negocios"
+    tri = open(url)
+
+    # jul
+    url = "http://api.bbce.com.br/produto/267/negocios"
+    jul = open(url)
+
+    # ago
+    url = "http://api.bbce.com.br/produto/291/negocios"
+    ago = open(url)
 
     respond_to do |format|
-      format.json {render json: bbce}
+      format.json {render json: [sem, tri, jul, ago]}
     end
   end
 

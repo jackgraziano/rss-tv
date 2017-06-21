@@ -9,45 +9,34 @@
     <div id="summary"></div>
   </div>
 
-  <div id="preco"></div>
 
-  <div class="footer" id="usd_wrapper">
-
-    <div class="quote_wrapper" id="ibov_wrapper">
-      <div class="symbol">IBOV: </div>
-      <div class="quote" id="ibov_quote"></div>
-      <div class="change" id="ibov_change"></div>
-    </div>
-
-    <div class="quote_wrapper" id="usd_wrapper">
-      <div class="symbol">USD: </div>
-      <div class="quote" id="usd_quote"></div>
-      <div class="change" id="usd_change"></div>
-    </div>
-
-    <div class="weather_wrapper">
-      <div class="weather_status" id="condition"></div>
-      <div class="weather_temp">
-        <span id="current_temp"></span>&deg
+  <div class="lower">
+    <div class="quotes">
+      <div class="bbce-wrapper">
+        <h2>SE con Jul-Dez/17:</h2>
+        <div id="sem" class="preco"></div>
       </div>
-      <div class="high-low-wrapper">
 
-        <div class="high">
-          <i class="fa fa-long-arrow-up" aria-hidden="true"></i>
-          <span id="high"></span>
-          &deg
-        </div>
-
-        <div class="low">
-          <i class="fa fa-long-arrow-down" aria-hidden="true"></i>
-          <span id="low"></span>
-          &deg
-        </div>
-
+      <div class="bbce-wrapper">
+        <h2>SE con Jul-Set/17:</h2>
+        <div id="tri" class="preco"></div>
       </div>
+
+      <div class="bbce-wrapper">
+        <h2>SE con Jul/17:</h2>
+        <div id="jul" class="preco"></div>
+      </div>
+
+      <div class="bbce-wrapper">
+        <h2>SE con Ago/17:</h2>
+        <div id="ago" class="preco"></div>
+      </div>
+
     </div>
+    <%= render 'footer' %>
 
   </div>
+
 
 </div>
 
@@ -229,12 +218,19 @@
     function display_bbce(bbce){
 
 
-      last_trade = JSON.parse(bbce[0])[0];
-      dataHora = last_trade.dataHora;
-      preco = last_trade.preco;
-      quantidade = last_trade.quantidade;
+      sem_last_trade = JSON.parse(bbce[0])[0];
+      tri_last_trade = JSON.parse(bbce[1])[0];
+      jul_last_trade = JSON.parse(bbce[2])[0];
+      ago_last_trade = JSON.parse(bbce[3])[0];
 
-      $('#preco').html(preco);
+      // dataHora = last_trade.dataHora;
+      // preco = last_trade.preco;
+      // quantidade = last_trade.quantidade;
+
+      $('#sem').html("R$ " + sem_last_trade.preco.toFixed(2));
+      $('#tri').html("R$ " + tri_last_trade.preco.toFixed(2));
+      $('#jul').html("R$ " + jul_last_trade.preco.toFixed(2));
+      $('#ago').html("R$ " + ago_last_trade.preco.toFixed(2));
       // $('#condition').html(condition);
       // $('#high').html(high);
       // $('#low').html(low);
