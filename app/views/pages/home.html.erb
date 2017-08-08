@@ -12,15 +12,6 @@
 
   <div class="lower">
     <div class="quotes">
-      <div class="bbce-wrapper">
-        <h2>SE con Jul-Dez/17:</h2>
-        <div id="sem" class="preco"></div>
-      </div>
-
-      <div class="bbce-wrapper">
-        <h2>SE con Jul-Set/17:</h2>
-        <div id="tri" class="preco"></div>
-      </div>
 
       <div class="bbce-wrapper">
         <h2>SE con Ago/17:</h2>
@@ -31,6 +22,17 @@
         <h2>SE con Set/17:</h2>
         <div id="set" class="preco"></div>
       </div>
+
+      <div class="bbce-wrapper">
+        <h2>SE con Out/17:</h2>
+        <div id="out" class="preco"></div>
+      </div>
+
+      <div class="bbce-wrapper">
+        <h2>SE con Nov/17:</h2>
+        <div id="nov" class="preco"></div>
+      </div>
+
 
     </div>
     <%= render 'footer' %>
@@ -221,15 +223,15 @@
 
     function display_bbce(bbce){
 
-      sem_last_trade = JSON.parse(bbce[0])[0];
-      tri_last_trade = JSON.parse(bbce[1])[0];
-      ago_last_trade = JSON.parse(bbce[2])[0];
-      set_last_trade = JSON.parse(bbce[3])[0];
+      ago_last_trade = JSON.parse(bbce[0])[0];
+      set_last_trade = JSON.parse(bbce[1])[0];
+      out_last_trade = JSON.parse(bbce[2])[0];
+      nov_last_trade = JSON.parse(bbce[3])[0];
 
-      $('#sem').html("R$ " + sem_last_trade.preco.toFixed(2));
-      $('#tri').html("R$ " + tri_last_trade.preco.toFixed(2));
       $('#ago').html("R$ " + ago_last_trade.preco.toFixed(2));
       $('#set').html("R$ " + set_last_trade.preco.toFixed(2));
+      $('#out').html("R$ " + out_last_trade.preco.toFixed(2));
+      $('#nov').html("R$ " + nov_last_trade.preco.toFixed(2));
 
       setTimeout(function(){update_bbce_feed();}, 20000);
 
