@@ -16,21 +16,25 @@
       <div class="bbce-wrapper">
         <h2>SE con Ago/17:</h2>
         <div id="ago" class="preco"></div>
+        <div id="data_ago" class="data"></div>
       </div>
 
       <div class="bbce-wrapper">
         <h2>SE con Set/17:</h2>
         <div id="set" class="preco"></div>
+        <div id="data_set" class="data"></div>
       </div>
 
       <div class="bbce-wrapper">
         <h2>SE con Out/17:</h2>
         <div id="out" class="preco"></div>
+        <div id="data_out" class="data"></div>
       </div>
 
       <div class="bbce-wrapper">
         <h2>SE con Nov/17:</h2>
         <div id="nov" class="preco"></div>
+        <div id="data_nov" class="data"></div>
       </div>
 
 
@@ -228,10 +232,19 @@
       out_last_trade = JSON.parse(bbce[2])[0];
       nov_last_trade = JSON.parse(bbce[3])[0];
 
+      // nov_last_trade.dataHora.substring(8, 10) + "/" + nov_last_trade.dataHora.substring(5, 7)
+
       $('#ago').html("R$ " + ago_last_trade.preco.toFixed(2));
       $('#set').html("R$ " + set_last_trade.preco.toFixed(2));
       $('#out').html("R$ " + out_last_trade.preco.toFixed(2));
       $('#nov').html("R$ " + nov_last_trade.preco.toFixed(2));
+
+
+
+      $('#data_ago').html(ago_last_trade.dataHora.substring(8, 10) + "/" + ago_last_trade.dataHora.substring(5, 7) + " " +  ago_last_trade.dataHora.substring(11, 16));
+      $('#data_set').html(set_last_trade.dataHora.substring(8, 10) + "/" + set_last_trade.dataHora.substring(5, 7) + " " +  set_last_trade.dataHora.substring(11, 16));
+      $('#data_out').html(out_last_trade.dataHora.substring(8, 10) + "/" + out_last_trade.dataHora.substring(5, 7) + " " +  out_last_trade.dataHora.substring(11, 16));
+      $('#data_nov').html(nov_last_trade.dataHora.substring(8, 10) + "/" + nov_last_trade.dataHora.substring(5, 7) + " " +  nov_last_trade.dataHora.substring(11, 16));
 
       setTimeout(function(){update_bbce_feed();}, 20000);
 
