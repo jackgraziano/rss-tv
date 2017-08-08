@@ -50,8 +50,8 @@ class FeedController < ApplicationController
     url = "http://api.bbce.com.br/produto/359/negocios"
     out = open(url)
 
-    # nov
-    url = "http://api.bbce.com.br/produto/357/negocios"
+    # ultimo tri
+    url = "http://api.bbce.com.br/produto/111/negocios"
     nov = open(url)
 
 
