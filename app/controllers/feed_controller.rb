@@ -46,16 +46,16 @@ class FeedController < ApplicationController
     url = "http://api.bbce.com.br/produto/110/negocios"
     tri = open(url)
 
-    # jul
-    url = "http://api.bbce.com.br/produto/267/negocios"
-    jul = open(url)
-
     # ago
     url = "http://api.bbce.com.br/produto/291/negocios"
     ago = open(url)
 
+    # set
+    url = "http://api.bbce.com.br/produto/361/negocios"
+    set = open(url)
+
     respond_to do |format|
-      format.json {render json: [sem, tri, jul, ago]}
+      format.json {render json: [sem, tri, ago, set]}
     end
   end
 
