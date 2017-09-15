@@ -38,25 +38,27 @@ class FeedController < ApplicationController
 
 
   def update_bbce
-    # ago
-    url = "http://api.bbce.com.br/produto/291/negocios"
-    ago = open(url)
 
-    # set
-    url = "http://api.bbce.com.br/produto/361/negocios"
-    set = open(url)
+    pos1 = '359' # out
+    pos2 = '357' # nov
+    pos3 = '355' # dez
+    pos4 = '111' # 4o tri
 
-    # out
-    url = "http://api.bbce.com.br/produto/359/negocios"
-    out = open(url)
+    url = "http://api.bbce.com.br/produto/#{pos1.to_s}/negocios"
+    res1 = open(url)
 
-    # ultimo tri
-    url = "http://api.bbce.com.br/produto/111/negocios"
-    nov = open(url)
+    url = "http://api.bbce.com.br/produto/#{pos2.to_s}/negocios"
+    res2 = open(url)
+
+    url = "http://api.bbce.com.br/produto/#{pos3.to_s}/negocios"
+    res3 = open(url)
+
+    url = "http://api.bbce.com.br/produto/#{pos4.to_s}/negocios"
+    res4 = open(url)
 
 
     respond_to do |format|
-      format.json {render json: [ago, set, out, nov]}
+      format.json {render json: [res1, res2, res3, res4]}
     end
   end
 
